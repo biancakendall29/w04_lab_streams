@@ -45,10 +45,7 @@ public class MVP {
         Given a String, return a List<String>, all caps.
      */
     public List<String> splitToAllCapsList(String input) {
-        //List<String> allCaps = Arrays.stream(input.toUpperCase().split(",", 1)).toList();
-        List<String> allCaps = Stream.of(input)
-                .map(String::toUpperCase)
-                .toList();
+        List<String> allCaps = Arrays.stream(input.toUpperCase().split("")).toList();
         return allCaps;
     }
 
