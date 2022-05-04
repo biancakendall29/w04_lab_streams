@@ -46,6 +46,7 @@ public class MVP {
      */
     public List<String> splitToAllCapsList(String input) {
         List<String> allCaps = Arrays.stream(input.toUpperCase().split("")).toList();
+        // Arrays.stream(input.split("")).map(str -> str.toUpperCase()).collect(Collectors.toList());
         return allCaps;
     }
 
@@ -57,7 +58,8 @@ public class MVP {
     public List<String> filterByFirstLetterAndOrder(List<String> list, String letter) {
         List<String> sorted = list
                 .stream()
-                .filter(s -> s.toCharArray()[0] == letter.toCharArray()[0])
+                .filter(s -> s.toCharArray()[0] == letter.toCharArray()[0]) // can also use s -> s.startsWith(letter)
+                // can also use s -> s.substring(0, 1).equals(letter). substring cuts out a portion of your string, from start position to end position
                 .sorted()
                 .map(String::toUpperCase)
                 .toList();
@@ -73,7 +75,7 @@ public class MVP {
         List<String> sorted = words
                 .stream()
                 .filter(s -> s.toCharArray()[0] == firstLetter.toCharArray()[0] && s.length() < maxLength)
-                .toList();
+                .toList(); // rather use .collect(Collectors.toList()) as it is modifiable. toList() is unmodifiable/read only
         return sorted;
     }
 }

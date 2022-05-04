@@ -5,6 +5,7 @@ import org.example.streamapi.model.Friend;
 import org.example.streamapi.model.User;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
@@ -73,7 +74,12 @@ public class Extension {
      */
     public List<String> sortBodybuilders(List<Bodybuilder> bodybuilders) {
         // Implement me :)
-        return null;
+        List<String> sorted = bodybuilders
+                .stream()
+                .sorted(Comparator.comparingInt(Bodybuilder::getLift).reversed().thenComparing(Bodybuilder::getAge).thenComparing(Bodybuilder::getName))
+                .map(Bodybuilder::getName)
+                .toList();
+        return sorted;
     }
 
 }
