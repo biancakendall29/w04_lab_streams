@@ -32,7 +32,12 @@ public class Extension {
     */
     public User getUserByIdOrCreateNew(List<User> users, long userId) {
         // Implement me :)
-        return null;
+        User gottenID = users
+                .stream()
+                .filter(el -> el.getId() == userId)
+                .findAny()
+                .orElse(new User(userId, "New user", User.GENDER.UNKNOWN));
+        return gottenID;
     }
 
     /*
