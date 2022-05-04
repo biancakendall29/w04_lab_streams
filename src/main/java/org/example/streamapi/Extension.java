@@ -6,6 +6,7 @@ import org.example.streamapi.model.User;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 public class Extension {
@@ -49,7 +50,15 @@ public class Extension {
 
     public List<String> partyWithFriends(List<Friend> friends) {
         // Implement me :)
-        return null;
+        Predicate<Friend> availDay = friend -> friend.getAvailableDay() == "Saturday";
+        Predicate<Friend> partier = friend -> friend.getActivity() == "Party";
+
+        List<String> partiesOnSaturday = friends
+                .stream()
+                .filter(availDay.and(partier))
+                .map(Friend::getName)
+                .toList();
+        return partiesOnSaturday;
     }
 
     /*
