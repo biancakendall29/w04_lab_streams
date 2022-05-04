@@ -16,9 +16,9 @@ public class Extension {
     */
     public int [] streamNumbers(int a, int b) {
         // Implement me :)
-        int[] sorted = {a,b};
-        Arrays.stream(sorted).sorted();
-        int[] range = IntStream
+        int[] sorted = Arrays.stream(new int[] {a, b}).sorted().toArray();
+        int[] range =
+                IntStream
                 .range(sorted[0], sorted[1])
                 .toArray();
         return range;
